@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Spectral:400,700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" charset="utf-8"></script>
+  <meta charset="utf-8" />
+  <!-- <style type="text/css"> -->
+  <!-- <script src="sketch.js"></script> -->
+</head>
+
+<body>
+  <div class="header">
+    <h4>Interpreted Narratives</h4>
+  </div>
+  <div id="section1">
+    <div id="introText">
+      <h1> The Framework </h1>
+      <p class="intro"> Thank you for agreeing to take part in this exericse.
+        There are 4 parts to it — you will first read an article,
+        then complete 4 simple tasks based on the article. This is not a test, there are no right or wrong answers.
+        The whole process should take about 15 minutes.
+        Your participation is anonoymous — I will not be collecting your name, contact information, or other identifiers.
+      </p>
+    </div>
+    <div id="toSection2">
+      <button class="button" id="getSection2" type="button">Let's Start</button>
+    </div>
+  </div>
+
+  <div id="section2">
+    <h1> Part 1: Highlight Three Sentences </h1>
+    <p id="instruction"> Please read through the article. Click to <b>select 3 sentences</b> you think are the most important.
+      Successfully selected sentences will be <span class="yellow">highlighted in yellow</span>. To change your selection, click on the sentence again to deselect it.
+      Submit once you have decided the 3 sentences.
+    </p>
+        <br>
+        <div id="mainText">
+        </div>
+
+        <div id="selecionArea">
+          <input class="button" id="submitSentences" type="submit" value="Submit Selection" />
+          <!-- <div id="selectText">
+        <ul id="textList">
+        </ul>
+      </div> -->
+        </div>
+  </div>
+
+  <div id="section3">
+    <h1> Part 2: Type Three Words </h1>
+    <p> Please type in three words in response to the article you just read. It can be a thought/feeling you have, or a keyword from the article.<p>
+        <br>
+        <form id="wordlist">
+          <input class="keywords" id="word1" type="text" value="" maxlength="20"><br>
+          <input class="keywords" id="word2" type="text" value="" maxlength="20"><br>
+          <input class="keywords" id="word3" type="text" value="" maxlength="20"><br>
+          <!-- <input type="submit" value="Submit"> -->
+        </form>
+        <button class="button" id="submitWords" type="submit">Submit Words</button>
+  </div>
+
+  <div id="section4">
+    <h1> Part 3: Select One Image </h1>
+    <p> Please select the image you think would be best suited as the article's headline image. </p>
+    <br>
+    <div id="imgs">
+      <img id="img1" alt="" width="340" height="227" src="images/img1.jpg">
+      <img id="img2" alt="" width="340" height="227" src="images/img2.jpg">
+      <img id="img3" alt="" width="340" height="227" src="images/img3.jpg">
+    </div>
+
+    <button class="button" id="submitImg" type="button">Submit Image</button>
+  </div>
+
+  <div id="section5">
+    <h1> Part 4: Additional Questions</h1>
+    <!-- <p> Question about personal information<p> -->
+        <form id="questions">
+          <label><b>Have you been to/lived in Hong Kong?</b></label>
+          <br>
+          <input type="checkbox" id="yes" value="yes"> Yes<br>
+          <input type="checkbox" id="no" value="no"> No<br>
+          <!-- <label>When was the first time you were in Hong Kong? Enter your birth year if you were born in Hong Kong.</label>
+      <input class="answer" id="word2" type="text" value="" maxlength="10"><br> -->
+          <br><br>
+          <div id="timeStayed">
+            <label><b>How long did you stay/have you lived in Hong Kong?</b></label>
+            <input class="answer" id="word2" type="text" value="" maxlength="10"><br>
+          </div>
+        </form>
+        <button class="button" id="submitAnswer" type="submit">Submit</button>
+  </div>
+
+  <div id="section6">
+    <h1> Thank You </h1>
+    <p id="end"> That's it! Thank you for taking the time to complete this exercise.
+    <br>You do not need to inform me about your completion.
+    I will share the results from all participants shortly. </p>
+    <br><br>
+    <h1> Article Source <h1>
+    <p> *Some sentences have been modified. </p>
+    <p class="source"><p>
+  </div>
+
+</body>
+<footer>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+  <script type="text/javascript" src="highlight.js">
+  </script>
+</footer>
+
+</html>
