@@ -1,14 +1,26 @@
-//Firebase
+//Firebase - Original
+// var firebaseConfig = {
+//   apiKey: "AIzaSyCqNPv6bSExjJobrc34d9mmzGTPd_JtB-Y",
+//   authDomain: "interpreted-narratives.firebaseapp.com",
+//   databaseURL: "https://interpreted-narratives.firebaseio.com",
+//   projectId: "interpreted-narratives",
+//   storageBucket: "interpreted-narratives.appspot.com",
+//   messagingSenderId: "313087194195",
+//   appId: "1:313087194195:web:efe848a764c521d886c2a6",
+//   measurementId: "G-99VQ9RLN6F"
+// };
+
+//Firebase - WinterShow
 var firebaseConfig = {
-  apiKey: "AIzaSyCqNPv6bSExjJobrc34d9mmzGTPd_JtB-Y",
-  authDomain: "interpreted-narratives.firebaseapp.com",
-  databaseURL: "https://interpreted-narratives.firebaseio.com",
-  projectId: "interpreted-narratives",
-  storageBucket: "interpreted-narratives.appspot.com",
-  messagingSenderId: "313087194195",
-  appId: "1:313087194195:web:efe848a764c521d886c2a6",
-  measurementId: "G-99VQ9RLN6F"
-};
+    apiKey: "AIzaSyCIv_CggBdxTYRaGcnHo3HZBN1gJaLgLrY",
+    authDomain: "narratives-wintershow.firebaseapp.com",
+    databaseURL: "https://narratives-wintershow.firebaseio.com",
+    projectId: "narratives-wintershow",
+    storageBucket: "narratives-wintershow.appspot.com",
+    messagingSenderId: "851819648822",
+    appId: "1:851819648822:web:1629b44563143d0bf0c597",
+    measurementId: "G-HJYWBPCY55"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // console.log(firebase);
@@ -75,7 +87,7 @@ $.get('article.txt', function(data) {
   for (i = 0; i < lines.length - 1; i++) {
     newText = "<span id='new" + i + "'>" + lines[i] + " " + "</span>";
     //check that all text have span around interval
-    console.log(newText);
+    // console.log(newText);
     $('#mainText').append(newText);
   }
 })
@@ -97,8 +109,8 @@ $(document).ready(function() {
     ),
     $("span").click(
       function() {
-        console.log("clickcount is ", clickCount)
-        if(clickCount == 2){
+        // console.log("clickcount is ", clickCount)
+        if (clickCount == 2) {
           articleB.style.display = "block";
           // console.log("a is b ")
         }
@@ -111,7 +123,7 @@ $(document).ready(function() {
           clickCount--;
           articleB.style.display = "none";
         }
-        console.log(this.id, clickCount)
+        // console.log(this.id, clickCount)
       },
     );
 });
@@ -127,7 +139,7 @@ $("#submitSentences").on("click", function() {
     allSelected.push(thisID);
     // allSelected.push(text);
   })
-  console.log(allSelected)
+  console.log("sentences", allSelected, userData)
   // submitHighlighted();
   userData.highlighted = allSelected;
 })
@@ -150,8 +162,9 @@ $("#submitWords").click(function() {
     let value = $(this).val();
     allWords.push(value);
   })
-  console.log("allWords", allWords)
+  // console.log("allWords", allWords)
   userData.tags = allWords;
+  console.log("allWords", allWords, userData)
   //submitWords();
 })
 
@@ -180,14 +193,15 @@ $("img").click(function() {
     imgClickCount--;
     imgB.style.display = "none";
   }
-  console.log(imgClickCount)
+  // console.log(imgClickCount)
   selectedImg = $(this).attr("id");
   // console.log($(this).attr("id"));
   // console.log(selectedImg)
+  console.log("image", selectedImg, userData)
 })
 
 $("#submitImg").on("click", function() {
-  console.log(selectedImg);
+  // console.log(selectedImg);
   // submitImg();
   userData.image = selectedImg;
 })
@@ -217,7 +231,7 @@ $("#no").click(function() {
 
 $("#submitAnswer").click(function() {
   timeStayed = $(".answer").val();
-  console.log(timeStayed);
+  // console.log(timeStayed);
   // submitInfo();
   userData.info = {
     lived: lived,
@@ -225,7 +239,11 @@ $("#submitAnswer").click(function() {
   };
   ref = database.ref("result");
   ref.push(userData);
+  ref.on("value", gotData, errData);
+  // console.log(ref)
+  console.log("info", lived, timeStayed, userData)
 })
+
 
 //* END SECTION *//
 $(".source").load("source.txt");
@@ -241,37 +259,117 @@ $(".source").load("source.txt");
 // }
 
 //* RETREIEVE *//
-var ref = database.ref("result");
-ref.on("value", gotData, errData);
-let imgCount = 0;
+// var ref = database.ref("result");
+// ref.on("value", gotData, errData);
+let img1Count = 0;
+let img2Count = 0;
+let img3Count = 0;
+let allSentences = [];
+let sCount = {};
+let allTags = [];
+let wCount = {};
 
 function gotData(data) {
+  console.log("gotData")
   let answers = data.val();
   let userID = Object.keys(answers);
 
-  for (let i=0; i<userID.length; i++){
+  for (let i = 0; i < userID.length; i++) {
     let u = userID[i];
     let highlighted = answers[u].highlighted;
     let image = answers[u].image;
     let info = answers[u].info.lived + " " + answers[u].info.timeStayed;
     let tags = answers[u].tags;
 
-    console.log(u, highlighted, image, info, tags)
+    //Image Count
+    switch (image) {
+      case "img1":
+        img1Count++
+        break;
+      case "img2":
+        img2Count++
+        break;
+      case "img3":
+        img3Count++;
+        break;
+      default:
+        break;
+
+    }
+    // console.log("each", u, highlighted, image, info, tags)
+    // console.log("IMG-count1", img1Count, img2Count, img3Count)
+    //Make all selected sentences into an array
+    highlighted.forEach(element => allSentences.push(element))
+
+    //Make all keywords into an array
+    tags.forEach(element => allTags.push(element))
+
+
+    // console.log("count", img1Count, img2Count, img3Count)
   }
-  // console.log(data.val());
-  // let results = data.val();
-  // let keys = Object.keys(results);
-  // console.log(keys)
-  //
-  // for (let i=0; i<keys.length; i++){
-  //   let key = keys[i];
-  //   let result = results[key];
-  // }
+  // console.log(allTags);
+  //Sentence Count
+  for (let j = 0, k = allSentences.length; j < k; j++) {
+    sCount[allSentences[j]] = (sCount[allSentences[j]] || 0) + 1;
+  }
+
+
+  // console.log(sCount);
+  // console.log(Object.keys(sCount))
+  let sSort = [];
+  for(let [key, val] of Object.entries(sCount)){
+    sSort.push([$("#" + key).text(), val])
+    // console.log($("#" + key).text(), val)
+  }
+  // console.log(sSort)
+
+  sSort.sort(function(a, b){
+    return b[1] - a[1]
+  })
+
+  // console.log(sSort)
+
+  let sDiv = document.getElementById("linesR");
+  for(let i=0; i<sSort.length; i++){
+    // console.log("(" + sSort[i][1] + ") " + sSort[i][0])
+    let result = ("<span class='yellowText'>" + sSort[i][1] + " x " + "</span>"+ "\"" + sSort[i][0].trim() + "\"");
+    $("#linesR").append(result + "<br>");
+  }
+
+
+//Image count
+// console.log(img1Count, img2Count, img3Count)
+  $("#img1Count").append(img1Count + " x");
+  $("#img2Count").append(img2Count + " x");
+  $("#img3Count").append(img3Count + " x");
+
+  // console.log("IMG", img1Count, img2Count, img3Count)
+
+//Tag count
+  for (let j = 0, k = allTags.length; j < k; j++) {
+    wCount[allTags[j]] = (wCount[allTags[j]] || 0) + 1;
+  }
+  console.log(wCount);
+  let wSort = [];
+  for(let [key, val] of Object.entries(wCount)){
+    wSort.push([key, val])
+  }
+
+  wSort.sort(function(a, b){
+    return b[1] - a[1]
+  })
+
+  let wDiv = document.getElementById("tagsR");
+  for(let i=0; i<wSort.length; i++){
+    $("#tagsR").append("<span class='noWrap'>" + "<span class='yellowText'>" + wSort[i][1] + " x " + "</span>"+ "<span class='oneWord'>" + wSort[i][0].trim() + "</span>" + "</span>")
+  }
 }
 
+  // console.log("WORDS", wSort)
+
 function errData(err) {
-  console.log("Error");
-  console.log(err);
+  // console.log("Error");
+  // console.log(err);
 }
 
 

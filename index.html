@@ -69,9 +69,9 @@
     <p> Please select the image you think would be best suited as the article's headline image. </p>
     <br>
     <div id="imgs">
-      <img id="img1" alt="" width="340" height="227" src="images/img1.jpg">
-      <img id="img2" alt="" width="340" height="227" src="images/img2.jpg">
-      <img id="img3" alt="" width="340" height="227" src="images/img3.jpg">
+      <img id="img1" alt="" src="images/img1.jpg">
+      <img id="img2" alt="" src="images/img2.jpg">
+      <img id="img3" alt="" src="images/img3.jpg">
     </div>
 
     <button class="button" id="submitImg" type="button">Submit Image</button>
@@ -99,11 +99,31 @@
   <div id="section6">
     <h1> Thank You </h1>
     <p id="end"> That's it! Thank you for taking the time to complete this exercise.
-    <br>You do not need to inform me about your completion.
-    I will share the results from all participants shortly. </p>
-    <br><br>
-    <h1> Article Source <h1>
-    <p> *Some sentences have been modified. </p>
+      Here are the results from you and all other participants so far:
+    </p>
+    <div id="results">
+      <div id="title">Selected Sentences (Sorted by Highest Frequency)</div><br>
+      <span id="linesR"></span>
+      <div id="title">Selected Img (Sorted by Highest Frequency)</div><br>
+      <div id="imgs2">
+        <div>
+          <span class="imgCount" id="img1Count"></span>
+          <img id="img1A" alt="" src="images/img1.jpg">
+        </div>
+        <div>
+          <span class="imgCount" id="img2Count"></span>
+          <img id="img2A" alt="" src="images/img2.jpg">
+        </div>
+        <div>
+          <span class="imgCount" id="img3Count"></span>
+          <img id="img3A" alt="" src="images/img3.jpg">
+        </div>
+      </div>
+      <div id="title">Word Responses</div><br>
+      <span id="tagsR"></span>
+    </div><br>
+    <hr/>
+    <div id ="title2"> Article Source <span id="remark">*Some sentences have been modified.</span></div>
     <p class="source"><p>
   </div>
 

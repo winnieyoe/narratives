@@ -7,9 +7,8 @@
     url('ApercuPro-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal; */
-
-  src:url('ApercuPro.woff') format('woff');
-      /* url('ApercuPro.ttf') format('truetype'); */
+  src: url('ApercuPro.woff') format('woff');
+  /* url('ApercuPro.ttf') format('truetype'); */
   font-weight: 400;
   font-style: normal;
 }
@@ -24,13 +23,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1{
+h1 {
   /* font-family: 'ElectraLTStd';
   font-weight: bold;
   font-style: normal; */
   font-family: 'Spectral', serif;
   font-weight: 700;
-  font-size: 44px;
+  font-size: 46px;
 }
 
 button, input[type="submit"] {
@@ -60,18 +59,18 @@ button, input[type="submit"] {
   -webkit-font-smoothing: antialiased;
 }
 
-p{
-  font-family: 'Apercu';
+p {
+  font-family: 'ApercuPro';
   font-weight: normal;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
-a{
+a {
   color: #ffd441;
 }
 
-a:hover{
+a:hover {
   color: #32485d;
 }
 
@@ -94,10 +93,9 @@ a:hover{
   margin-bottom: 5%;
   font-family: 'Apercu';
   font-weight: normal;
-  font-size:16px;
+  font-size: 16px;
   color: #808080;
 }
-
 
 #mainText {
   /* font-family: "ElectraLTStd"; */
@@ -106,9 +104,10 @@ a:hover{
   width: 70%;
 }
 
-#submitSentences{
+#submitSentences {
   display: none;
 }
+
 .hover {
   background-color: #32485d;
 }
@@ -162,6 +161,22 @@ a:hover{
   justify-content: space-between;
 }
 
+#img1{
+  width: 30%;
+  height: inherit;
+  margin-right: 3%;
+}
+#img2{
+  width: 30%;
+  height: inherit;
+  margin-right: 3%;
+}
+#img3{
+  width: 30%;
+  height: inherit;
+  margin-right: 3%;
+}
+
 .border {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -208,6 +223,83 @@ a:hover{
   display: none;
 }
 
+#results {
+  margin-top: 50px;
+  font-family: "ApercuPro";
+  font-size: 16px;
+  width: 72%;
+}
+
+#title {
+  font-family: 'Apercu-Bold';
+  color: #ffd441;
+  font-size: 20px;
+  margin-bottom: -30px;
+  margin-top: 50px;
+}
+
+#title2 {
+  font-family: 'Apercu-Bold';
+  color: #ffd441;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+#remark {
+  font-family: 'ApercuPro';
+  font-weight: normal;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.imgCount {
+  color: #ffd441;
+}
+
+.yellowText {
+  color: #ffd441;
+}
+
+.oneWord {
+  margin-right: 20px;
+}
+
+.noWrap {
+  display: inline-block;
+}
+
+#imgs2 {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#img1{
+  width: 95%;
+  height: inherit;
+  margin-right: 3%;
+}
+#img2{
+  width: 95%;
+  height: inherit;
+  margin-right: 3%;
+}
+#img3{
+  width: 95%;
+  height: inherit;
+  margin-right: 3%;
+}
+
 #end {
   width: 80%;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #fff;
+  margin: 1em 0;
+  padding: 0;
 }
